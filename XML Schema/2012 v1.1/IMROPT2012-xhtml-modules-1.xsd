@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- =================================================================== -->
+<!--                                            Lokale versie                                                                         -->
+<!--       	             Onderdeel van IMROPT2012 versie 1.0.1                                                   -->
+<!--                        Onderdeel van RO Standaarden 2012                                                          -->
+<!-- =================================================================== -->
+<!-- Remote versie op:																											 -->
+<!-- http://schemas.geonovum.nl/imro/pt/2012/1.0/IMROPT2012.xsd                                            -->
+<!-- =================================================================== -->
+<!-- Geonovum, Beheerorganisatie RO-Standaarden. http://ro-standaarden.geonovum.nl -->
+<!-- =================================================================== -->
+<!-- versieinfo -->
+<!-- 2012-10-30 Versie 1.0.1 gepubliceerd -->
+<!-- Geen aanpassingen -->
+<!-- 2012-09-27 Versie 1.0.1.1RC voor test door RO-Online -->
+<!-- 2012-07-10 Versie 1.0.0.1 gepubliceerd -->
+<!-- Geldig vanaf 2012-07-22 -->
+<!-- 2012-07-04 Versie 1.0.0.1 nog niet gepubliceerd -->
+<!-- geen aanpassing -->
+<!-- 2012-03-01 Versie 1.0.0 Gepubliceerd -->
+<!-- 2012-02-08 -->
+<!-- inhoud overgenomen van 2008 versie -->
+<!-- namespaces en verwijzingen aangepast -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xh11d="http://www.w3.org/1999/xhtml/datatypes/" xmlns:imropt="http://www.geonovum.nl/imro/pt/2012/1.0" xmlns="http://www.w3.org/1999/xhtml" targetNamespace="http://www.w3.org/1999/xhtml" elementFormDefault="qualified">
+	<xs:import namespace="http://www.geonovum.nl/imro/pt/2012/1.0" schemaLocation="IMROPT2012.xsd"/>
+	<xs:annotation>
+		<xs:documentation>
+			Dit is de XML Schema module voor module IMROPT2012-xhtml.
+			Dit schema bevat een deelverzameling van de modules (en herdefinities) van
+			het XHTML Basic 1.0 Document type. 
+			IMROPT2012-xhtml-modules-1.xsd
+		</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="IMROPT2012-xhtml-list.xsd"/>
+	<xs:include schemaLocation="XHTML-Basic/xhtml-framework-1.xsd">
+		<xs:annotation>
+			<xs:documentation>
+        Schema Framework Component Modules:
+            +  notations
+            +  datatypes
+            +  common attributes
+            +  character entities
+      </xs:documentation>
+			<xs:documentation source="http://www.w3.org/TR/xhtml-modularization/abstract_modules.html#s_commonatts"/>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="XHTML-Basic/xhtml-text-1.xsd">
+		<xs:annotation>
+			<xs:documentation>
+        Text module
+
+        The Text module includes declarations for all core
+        text container elements and their attributes.
+
+            +  block phrasal
+            +  block structural
+            +  inline phrasal
+            +  inline structural
+
+        Elements defined here:
+          * address, blockquote, pre, h1, h2, h3, h4, h5, h6
+          * div, p
+          * abbr, acronym, cite, code, dfn, em, kbd, q, samp, strong, var
+          * br, span
+      </xs:documentation>
+			<xs:documentation source="http://www.w3.org/TR/2001/REC-xhtml-modularization-20010410/abstract_modules.html#s_textmodule"/>
+		</xs:annotation>
+	</xs:include>
+	<xs:redefine schemaLocation="XHTML-Basic/xhtml-hypertext-1.xsd">
+		<xs:annotation>
+			<xs:documentation>
+         Hypertext module
+
+         Elements defined here:
+          * a
+      </xs:documentation>
+			<xs:documentation source="http://www.w3.org/TR/2001/REC-xhtml-modularization-20010410/abstract_modules.html#s_hypertextmodule"/>
+		</xs:annotation>
+		<xs:attributeGroup name="xhtml.a.attlist">
+			<xs:attributeGroup ref="xhtml.a.attlist"/>
+		</xs:attributeGroup>
+	</xs:redefine>
+	<xs:redefine schemaLocation="XHTML-Basic/xhtml-list-1.xsd">
+		<xs:annotation>
+			<xs:documentation>
+        Lists module
+
+        Elements defined here:
+          * dt, dd, dl, ol, ul, li
+      </xs:documentation>
+			<xs:documentation source="http://www.w3.org/TR/2001/REC-xhtml-modularization-20010410/abstract_modules.html#s_listmodule"/>
+		</xs:annotation>
+		<!-- extra attributen voor lijsten toevoegen -->
+		<xs:attributeGroup name="xhtml.ol.attlist">
+			<xs:attributeGroup ref="xhtml.ol.attlist"/>
+			<xs:attributeGroup ref="xhtml.ol.legacy.attlist"/>
+		</xs:attributeGroup>
+		<xs:attributeGroup name="xhtml.li.attlist">
+			<xs:attributeGroup ref="xhtml.li.attlist"/>
+			<xs:attributeGroup ref="xhtml.li.legacy.attlist"/>
+		</xs:attributeGroup>
+	</xs:redefine>
+	<xs:include schemaLocation="XHTML-Basic/xhtml-edit-1.xsd">
+		<xs:annotation>
+			<xs:documentation>
+        Edit module
+
+        Elements defined here:
+          * ins, del
+      </xs:documentation>
+			<xs:documentation source="http://www.w3.org/TR/xhtml-modularization/abstract_modules.html#s_editmodule"/>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="XHTML-Basic/xhtml-pres-1.xsd">
+		<xs:annotation>
+			<xs:documentation>
+        Presentational module
+
+         Elements defined here:
+           * hr, b, big, i, small,sub, sup, tt
+      </xs:documentation>
+			<xs:documentation source="http://www.w3.org/TR/xhtml-modularization/abstract_modules.html#s_presentationmodule"/>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="XHTML-Basic/xhtml-link-1.xsd">
+		<xs:annotation>
+			<xs:documentation>
+        Link module
+
+        Elements defined here:
+          * link
+      </xs:documentation>
+			<xs:documentation source="http://www.w3.org/TR/xhtml-modularization/abstract_modules.html#s_linkmodule"/>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="XHTML-Basic/xhtml-meta-1.xsd">
+		<xs:annotation>
+			<xs:documentation>
+        Meta module
+
+        Elements defined here:
+        * meta
+      </xs:documentation>
+			<xs:documentation source="http://www.w3.org/TR/xhtml-modularization/abstract_modules.html#s_metamodule"/>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="XHTML-Basic/xhtml-base-1.xsd">
+		<xs:annotation>
+			<xs:documentation>
+        Base module
+
+        Elements defined here:
+          * base
+      </xs:documentation>
+			<xs:documentation source="http://www.w3.org/TR/xhtml-modularization/abstract_modules.html#s_basemodule"/>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="XHTML-Basic/xhtml-style-1.xsd">
+		<xs:annotation>
+			<xs:documentation>
+        Style module
+
+        Elements defined here:
+          * style
+      </xs:documentation>
+			<xs:documentation source="http://www.w3.org/TR/xhtml-modularization/abstract_modules.html#s_stylemodule"/>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="XHTML-Basic/xhtml-inlstyle-1.xsd">
+		<xs:annotation>
+			<xs:documentation>
+        Style attribute module
+
+        Attribute defined here:
+          * style
+      </xs:documentation>
+			<xs:documentation source="http://www.w3.org/TR/xhtml-modularization/abstract_modules.html#s_styleattributemodule"/>
+		</xs:annotation>
+	</xs:include>
+	<xs:redefine schemaLocation="XHTML-Basic/xhtml-image-1.xsd">
+		<xs:annotation>
+			<xs:documentation>
+        Image module
+
+        Elements defined here:
+          * img
+      </xs:documentation>
+			<xs:documentation source="http://www.w3.org/TR/xhtml-modularization/abstract_modules.html#s_imagemodule"/>
+		</xs:annotation>
+		<xs:attributeGroup name="xhtml.img.attlist">
+			<xs:attributeGroup ref="xhtml.img.attlist">
+				<xs:annotation>
+					<xs:documentation>
+                Original Image Attributes (in Image Module)
+             </xs:documentation>
+				</xs:annotation>
+			</xs:attributeGroup>
+		</xs:attributeGroup>
+	</xs:redefine>
+	<xs:include schemaLocation="XHTML-Basic/xhtml-table-1.xsd">
+		<xs:annotation>
+			<xs:documentation>
+        Tables module
+
+        Elements defined here:
+          * table, caption, thead, tfoot, tbody, colgroup, col, tr, th, td
+      </xs:documentation>
+			<xs:documentation source="http://www.w3.org/TR/xhtml-modularization/abstract_modules.html#s_tablemodule"/>
+		</xs:annotation>
+	</xs:include>
+</xs:schema>

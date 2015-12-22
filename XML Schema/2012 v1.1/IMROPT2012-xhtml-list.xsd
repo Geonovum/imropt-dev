@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- =================================================================== -->
+<!--                                            Lokale versie                                                                         -->
+<!--       	             Onderdeel van IMROPT2012 versie 1.0.1                                                    -->
+<!--                        Onderdeel van RO Standaarden 2012                                                          -->
+<!-- =================================================================== -->
+<!-- Remote versie op:																											 -->
+<!-- http://schemas.geonovum.nl/imro/pt/2012/1.0/IMROPT2012.xsd                                            -->
+<!-- =================================================================== -->
+<!-- Geonovum, Beheerorganisatie RO-Standaarden. http://ro-standaarden.geonovum.nl -->
+<!-- =================================================================== -->
+<!-- versieinfo -->
+<!-- 2012-10-30 Versie 1.0.1 gepubliceerd -->
+<!-- Geen aanpassingen -->
+<!-- 2012-09-27 Versie 1.0.1.1RC voor test door RO-Online -->
+<!-- 2012-07-10 Versie 1.0.0.1 gepubliceerd -->
+<!-- Geldig vanaf 2012-07-22 -->
+<!-- 2012-07-04 Versie 1.0.0.1 nog niet gepubliceerd -->
+<!-- geen aanpassing -->
+<!-- versieinfo -->
+<!-- 2012-07-04 Versie 1.0.0.1 nog niet gepubliceerd -->
+<!-- 2012-03-01 Versie 1.0.0 Gepubliceerd -->
+<!-- 2012-02-08 -->
+<!-- inhoud overgenomen van 2008 versie -->
+<!-- namespaces en verwijzingen aangepast -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xh11d="http://www.w3.org/1999/xhtml/datatypes/" xmlns="http://www.w3.org/1999/xhtml" targetNamespace="http://www.w3.org/1999/xhtml" elementFormDefault="qualified" blockDefault="#all">
+	<xs:annotation>
+		<xs:documentation>
+      Deze file bevat de extra elementen die nodig zijn in lijsten
+      IMROPT2012-xhtml-list.xsd
+    </xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.w3.org/1999/xhtml/datatypes/" schemaLocation="XHTML-Basic/xhtml-datatypes-1.xsd"/>
+	<!-- De 'type' en 'value' attributen zijn deprecated in HTML 4.01, maar nog steeds nodig en 
+		lijken terug te gaan komen in XHTML2, dus we voegen het toe in de XHTML namespace (ze zaten in xhtml-misc-1.xsd,
+		maar we willen niet alle legacy-dingen zoals frames -->
+	<xs:attributeGroup name="xhtml.ol.legacy.attlist">
+		<xs:attribute name="type" type="xh11d:CDATA"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="xhtml.li.legacy.attlist">
+		<xs:attribute name="value" type="xh11d:Number"/>
+	</xs:attributeGroup>
+</xs:schema>

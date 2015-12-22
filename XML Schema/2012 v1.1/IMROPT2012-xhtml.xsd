@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- =================================================================== -->
+<!--                                            Lokale versie                                                                         -->
+<!--       	             Onderdeel van IMROPT2012 versie 1.0.1                                                     -->
+<!--                        Onderdeel van RO Standaarden 2012                                                          -->
+<!-- =================================================================== -->
+<!-- Remote versie op:																											 -->
+<!-- http://schemas.geonovum.nl/imro/pt/2012/1.0/IMROPT2012.xsd                                            -->
+<!-- =================================================================== -->
+<!-- Geonovum, Beheerorganisatie RO-Standaarden. http://ro-standaarden.geonovum.nl -->
+<!-- =================================================================== -->
+<!-- versieinfo -->
+<!-- 2012-10-30 Versie 1.0.1 gepubliceerd -->
+<!-- Geen aanpassingen -->
+<!-- 2012-09-27 Versie 1.0.1.1RC voor test door RO-Online -->
+<!-- 2012-07-10 Versie 1.0.0.1 gepubliceerd -->
+<!-- Geldig vanaf 2012-07-22 -->
+<!-- 2012-07-04 Versie 1.0.0.1 nog niet gepubliceerd -->
+<!-- geen aanpassing -->
+<!-- 2012-03-01 Versie 1.0.0 Gepubliceerd -->
+<!-- 2012-02-08 -->
+<!-- waarden verwijderd en toegevoegd, toegevoegd -->
+<!-- inhoud overgenomen van 2008 versie -->
+<!-- namespaces en verwijzingen aangepast -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:imropt="http://www.geonovum.nl/imro/pt/2012/1.0" xmlns="http://www.w3.org/1999/xhtml" targetNamespace="http://www.w3.org/1999/xhtml" elementFormDefault="qualified" blockDefault="#all">
+	<xs:annotation>
+		<xs:documentation>
+      Dit is de schemadriver voor de subset van XHTML geschikt voor
+      IMRO gecodeerde planteksten.
+      IMROPT2012-xhtml.xsd
+    </xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="IMROPT2012-xhtml-modules-1.xsd"/>
+	<xs:import namespace="http://www.geonovum.nl/imro/pt/2012/1.0" schemaLocation="IMROPT2012.xsd"/>
+	<xs:redefine schemaLocation="IMROPT2012-xhtml-model-1.xsd">
+		<xs:group name="xhtml.AnchorImropt.class">
+			<xs:choice>
+				<xs:element ref="imropt:interneVerwijzing"/>
+				<xs:element ref="imropt:externeVerwijzing"/>
+				<xs:element ref="imropt:verwijderd"/>
+				<xs:element ref="imropt:toegevoegd"/>
+				<xs:group ref="xhtml.AnchorImropt.class"/>
+			</xs:choice>
+		</xs:group>
+		<xs:group name="xhtml.InlineImropt.class">
+			<xs:choice>
+				<!-- extra elementen voor de IMRO PT XHTML. Ze kunnen overal voorkomen waar inline content toegestaan is,
+					maar het zijn 'leaf' elementen; ze mogen geen verdere XHTML-elementen bevatten.-->
+				<xs:element ref="imropt:voetnoot" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:group ref="xhtml.InlineImropt.class"/>
+			</xs:choice>
+		</xs:group>
+	</xs:redefine>
+	<xs:element name="tekst" type="imropt:rotext.type"/>
+</xs:schema>

@@ -1,0 +1,19 @@
+Dit XML Schema hoort bij het Informatiemodel Ruimtelijke Ordening Planteksten 2012
+Modeldocument: beschrijving van het model. Versie 1.1.
+
+Update tengevolge van een importfout in de 1.0.0.1 versie. Dit gaf in sommige parsers (o.a. Xerces) wel een foutmelding in andere niet. De set aan XSD's is hier nu voor gecorrigeerd en nu wel correct. o.a is het het schema van 'IMROPT2012-xhtml-module.xsd' nu in het IMROPT2012.xsd opgenomen.
+
+In dit bestand zitten de schema's voor lokale installatie van IMROPT2012 v 1.0.1.
+
+Deze zijn identiek aan de remote schema's op:http://schemas.geonovum.nl/imro/pt/2012/1.0/IMROPT2012.xsd. (geplaatst op 30 oktober 2012)
+
+De verwijzing naar het remote schema is de officiele implementatie van IMROPT2012.
+
+In de folder XHTML-Basic bevinden zich de XHTML-Basic schemas. In de remote versie wordt verwezen naar de url: http://www.w3.org/MarkUp/SCHEMA/
+
+De GML schema's zijn niet lokaal gemaakt.
+
+Versie informatie:
+versie 1.0.1 volgt op versie 1.0.1.1RC (niet gepubliceerd) volgt op 1.0.0.1.
+
+

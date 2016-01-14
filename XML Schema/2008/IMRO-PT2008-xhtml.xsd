@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Versie informatie -->
+<!-- 2012-07-10 Versie 1.0.1.1 gepubliceerd -->
+<!-- Geldig vanaf 2012-07-22 -->
+<!-- 2012-07-04 Versie 1.0.1.1 nog niet gepubliceerd -->
+<!-- xlink reparatie -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:imropt="http://www.geonovum.nl/imro/pt/2008/1" xmlns="http://www.w3.org/1999/xhtml" targetNamespace="http://www.w3.org/1999/xhtml" elementFormDefault="qualified" blockDefault="#all">
+	<xs:annotation>
+		<xs:documentation>
+      Dit is de schemadriver voor de subset van XHTML geschikt voor
+      IMRO gecodeerde planteksten.
+      IMRO-PT2008-xhtml.xsd
+    </xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.geonovum.nl/imro/pt/2008/1" schemaLocation="IMRO-PT2008-xhtml-module.xsd"/>
+	<xs:redefine schemaLocation="IMRO-PT2008-xhtml-model-1.xsd">
+		<xs:group name="xhtml.AnchorImropt.class">
+			<xs:choice>
+				<xs:element ref="imropt:interneVerwijzing"/>
+				<xs:element ref="imropt:externeVerwijzing"/>
+				<xs:group ref="xhtml.AnchorImropt.class"/>
+			</xs:choice>
+		</xs:group>
+		<xs:group name="xhtml.InlineImropt.class">
+			<xs:choice>
+				<!-- extra elementen voor de IMRO PT XHTML. Ze kunnen overal voorkomen waar inline content toegestaan is,
+					maar het zijn 'leaf' elementen; ze mogen geen verdere XHTML-elementen bevatten.-->
+				<xs:element ref="imropt:omvangWaardeTekst" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="imropt:functieTekst" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="imropt:aanduidingTekst" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="imropt:structuurvisiegebiedTekst" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="imropt:voetnoot" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:group ref="xhtml.InlineImropt.class"/>
+			</xs:choice>
+		</xs:group>
+	</xs:redefine>
+	<xs:element name="tekst" type="imropt:rotext.type"/>
+</xs:schema>

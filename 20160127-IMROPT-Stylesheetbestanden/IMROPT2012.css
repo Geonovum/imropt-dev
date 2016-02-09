@@ -1,0 +1,687 @@
+/*
+================================================================================
+Cascading StyleSheet versie 2.0.2
+lokale versie
+behorende bij IMROPT2012 versie 1.1. met XSLT versie 2.0
+onderdeel van RO Standaarden 2012
+geïmplementeerd in Ruimtelijkeplannen.nl vanaf de release van juli 2015
+=================================================================================
+Geonovum, Beheerorganisatie RO Standaarden. http://ro-standaarden.geonovum.nl 	
+=================================================================================
+In deze versie zijn de volgende gecombineerde issues uit Mantis 4209 en
+4598 opgelost:
+- betere navigatie met knoppen vorige-volgende artikel
+- betere inhoudsopgave plus menu						
+- betere metadata bovenaan							
+- betere printbaarheid
+- betere beschrijving XSL/CSS in RO Standaarden
+- keuze voor opmaak in STYLE of CLASS attributen
+- aanmaken link naar externe bestanden als er geen naam voorkomt in de titelinfo
+
+Omdat Ruimtelijkeplannen.nl het gebruik van een eigen CSS-bestand niet langer
+ondersteund, kan vanaf deze versie het logo van de bronhouder boven de plantekst
+worden getoond. Hievoor moet de bronhouder eenmalig een logo uploaden via de
+index van Ruimtelijkeplannen.nl
+=================================================================================
+ * [Aanpassing december 2015 door Rieuwert Witte en Geodan]
+
+ * Opbouw van de HTML:de pagina is horizontaal gesplitst:boven een kop (class "kop")
+   van 80px met daaronder de tekst (class "tekst"). 
+ * De tekst is vertikaal gesplitst in:
+ *   - links een inhoudsopgave van 30% van de breedte (class "inhousdopgave") en 
+ *   - rechts de tekst (class "inhoud").
+ * koptekst height verhoogd van 66px naar 100px
+ * div.navigatie ul en div.topnavigatie ul verhoogd van 40px naar 70px
+ * topindexButton voor top verhoogd van 77px naar 110px
+ * inhoudsopgave2 voor top verhoogd van 97px naar 131px
+ * inhoud voor top verhoogd van 97px naar 131px
+=================================================================================
+ */
+
+@media print
+   {
+   .container{
+      display:none;
+      }
+      
+   .popupIE {
+      position:relative;
+      z-index:2000;
+      }
+      
+   .popup {
+      position:relative;
+      z-index:1000;
+      display:block;
+      padding-top:12px;
+      overflow-x:auto;
+      overflow-y:auto;
+      padding-left:10px;
+      padding-right:10px;
+      font-family:verdana,helvetica,sans-serif;
+      font-size:13px;
+      }
+      
+   .popupTop {
+      display:none;
+      }
+      
+   .popupTekst .popupButton .zonderTitel{
+      display:none;
+      }
+   }
+   
+@media screen
+   {   
+    html, body 
+            {
+      height:100%;
+      font-family:verdana,helvetica,sans-serif;
+      overflow-y:hidden;
+      text-decoration:none;
+      cursor:default;
+      }
+     
+   /****************************************************************/
+   /* De kop bestaande uit een titel (class "titel") en metadata (class "metadata"). */
+
+   .logo {
+         float: left;
+   }
+
+   .koptekst {
+      position:fixed; 
+      top:0;
+      left:0;
+      width:100%;
+      height:100px;
+
+      padding-left:5px;
+      margin:0 0 0 0;
+
+      color:white;
+      background:#8191A8;
+
+      z-index:100;
+      font-size:1.4em;
+       
+      border-bottom-style:solid;
+      border-bottom-width:3;
+      border-bottom-color:#FF8A00;     
+    }
+
+   .titel {     
+      float:left;
+      margin-right:400px;
+      margin-top:0px;
+   }
+
+   .titel a:hover {
+      text-decoration:none;
+      cursor:default;	
+   }
+
+   /****************************************************************/
+   /* De plangegevens zijn hier aan de rechterzijde van het scherm geprikt. De gegevens zelf staan in een tabel (class "metadata") */
+   .plangegevens {
+      position:fixed; 
+      font-size:0.55em;
+      right:0;
+      color:#000;
+      margin-top:0px;
+      margin-right:0px;
+      
+      padding-left:200px;
+
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: left;
+   }
+
+   .plangegevens a:hover {
+      text-decoration:none;
+      cursor:default;
+   }
+   
+   .plangegevens table{
+      border-spacing:0;
+      border-collapse:collapse;
+   }
+
+   .plangegevens .metadata td {
+      padding-top:4px;
+      padding-right:4px;
+      padding-bottom:2px;
+      padding-left:4px;
+   }
+
+   div.navigatie ul 
+      {
+      position:fixed;
+      display:block;
+      float:none;
+      list-style-type:none;
+      font-size:0.55em;
+      font-weight:bold;
+
+      margin-left:-40px;
+      margin-top:70px;
+      }
+
+   div.navigatie li 
+      {
+      display:inline;
+      background-color:#fff; 
+      float:left;
+
+      margin-right:1.0em;
+
+      padding:0.15em;
+      padding-left:1.0em;
+      padding-right:1.0em;
+
+      border-style:none;
+
+      border-radius:1px;
+      -webkit-border-radius:1px;
+      -moz-border-radius:1px;
+      }
+
+   div.navigatie a:hover
+      {
+      text-decoration:none;
+   }
+   div.navigatie li:hover
+      {
+      background-color:#FF8A00;
+   }
+   
+   .menubalk, .menubalkKaart, .menubalkAfdrukken
+      { 
+      color:#000;
+   }
+
+   a.menubalk:hover, a.menubalkKaart:hover, a.menubalkAfdrukken:hover 
+      {
+      text-decoration:underline;
+   }
+      
+   /****************************************************************/
+   div.topnavigatie ul 
+      {
+      position:fixed;
+      display:block;
+      float:none;
+      list-style-type:none;
+      font-size:0.6em;
+
+      margin-left:-40px;
+      margin-top:70px;
+      }
+      
+   div.topnavigatie li 
+           {
+      display:inline;
+      float:left;
+
+      margin-right:1.0em;
+
+      padding:0.2em;
+      padding-left:1.0em;
+      padding-right:1.0em;
+
+      border-style:none;
+      }
+
+   .topindexButton, .toptekstButton 
+            {
+      position:fixed;
+      background-color:#e4e6f4;
+      cursor:pointer;
+      height:15px;
+      width:30px;     
+      top: 110px;
+      text-align:center;
+      font-size:10px;
+      color:black;
+      z-index:100;
+
+      border-radius:2px;
+      -webkit-border-radius:2px;
+      -moz-border-radius:2px;
+      }
+	  
+    .topindexButton {
+      left:0px;
+      margin-left:6px;
+      }
+	  
+    .toptekstButton {
+      left:30%;
+      margin-left:6px;
+      }
+      
+   .topindexButton:hover, .toptekstButton:hover, .popupButton:hover{
+      background-color:#FF8A00;
+      text-decoration:none;
+      }
+	  
+	.popupButton:hover{
+      background:url(afdrukken.gif) 1px 2px no-repeat;
+      background-color:#FF8A00;
+      }
+   
+   /****************************************************************/
+   /* De gehele tekst (class "tekst") staat onder de koptekst. De tekst bestaat uit een inhoudopgave (class "inhoudsopgave2") en inhoudelijke tekst (class "inhoud") */
+   .tekst {
+      position:relative;
+      left:0;
+      margin-left:0;
+      font-size:0.7em;
+   }
+      
+   .zonderTitel {
+      font-style:italic;
+      }
+
+   /* De inhoudsopgave (class "inhoudsopgave2". Dit is 2, omdat het gebruik van deze class wezenlijk verschilt van de class "inhoudsopgave" uit de voorgaande XSLT versie) */
+   .inhoudsopgave2 {
+      position:fixed;
+      top: 131px;
+      left:0;
+      bottom:0;
+      width:30%;
+      margin-left:-5px;
+      white-space:nowrap;  
+      overflow-x:auto;
+      overflow-y:auto;
+      background:white;
+      
+      box-sizing:border-box;    
+      -moz-box-sizing:border-box;
+      -webkit-box-sizing:border-box;
+      -o-box-sizing:border-box;
+      -ms-box-sizing:border-box;
+   }
+
+   .inhoudsopgave2 ul {
+      list-style-type:none; 
+      padding-left:10px;
+   }
+
+   .inhoudsopgave-h1 {
+      font-size:1.4em;
+      font-weight:bold;
+      margin-top:4px;
+      margin-left:-4px;
+      padding-left:4px;
+      padding-top:4px;
+      padding-bottom:4px;
+
+      border-top-style:solid;
+      border-top-width:2px;
+      border-top-color:#e4e6f4;
+      }
+      
+   .inhoudsopgave-h2 {
+      font-size:1.2em;
+      font-weight:bold;
+      margin-left:0px;
+   }
+   .inhoudsopgave-h3 {
+      font-size:1.0em;
+      font-weight:normal;
+      margin-left:12px;
+   }
+   .inhoudsopgave-h4 {
+      font-size:1.0em;
+      font-weight:normal;
+      margin-left:24px;
+   }
+   .inhoudsopgave-h5 {
+      font-size:1.0em;
+      font-weight:normal;
+      margin-left:36px;
+   }
+   .inhoudsopgave-h6 {
+      font-size:1.0em;
+      font-weight:normal;
+      margin-left:48px;
+   }
+   .inhoudsopgave-h7 {
+      font-size:1.0em;
+      font-weight:normal;
+      margin-left:60px;
+   }
+   .inhoudsopgave-h8 {
+      font-size:1.0em;
+      font-weight:normal;
+      margin-left:72px;
+   }
+   .inhoudsopgave-h9 {
+      font-size:1.0em;
+      font-weight:normal;
+      margin-left:84px;
+   }
+
+   .inhoudsopgave2 li {
+      margin-bottom:2px;
+      font-weight:bold;
+   }
+	  
+   /****************************************************************/
+   /* De inhoudelijke tekst */
+   .inhoud {
+      position:fixed;
+      top: 131px;
+      bottom:0;
+      margin-left:30%;
+      overflow-x:auto;
+      overflow-y:auto;
+      background:white;   
+
+      -moz-box-sizing:border-box;
+      -webkit-box-sizing:border-box;
+      -o-box-sizing:border-box;
+      -ms-box-sizing:border-box;
+      box-sizing:border-box;
+   }
+
+   .rbutton {
+      position:absolute;
+      right:10px;
+      }
+
+   .verwijderd {text-decoration:line-through;}
+   .toegevoegd {background-color:yellow;}
+
+   .voetnoot a {
+      background-color:#ccc;
+      }
+
+   .voetnoot a:hover {
+      color:#ff0;
+      background-color:#aaa;
+      }
+
+   .voetnoot a span{
+      display:none;
+      background-color:#aaa;
+      }
+
+   .voetnoot a:hover span {
+      display:inline;
+      position:relative;
+      text-align:left;
+      color:#ff0;
+      background-color:#aaa; 
+      }
+
+   .titelInTekst {
+      padding-top:6px;
+      margin-bottom:6px;
+      color:#FF8A00;
+      font-size:2.0em;
+      font-weight:bold;
+      }
+   
+   /****************************************************************/
+   /* Popup scherm */
+
+   .popupIE {
+      position:relative;
+      z-index:1000;
+      
+      overflow-y:auto;
+      
+      top:15%;
+      left:10%;
+      width:80%;
+      height:70%;
+      
+      margin:0px;
+      padding:0px;
+      font-size:13px;
+     
+      box-sizing:border-box;    
+      -moz-box-sizing:border-box;
+      -webkit-box-sizing:border-box;
+      }
+      
+   .popup {
+      position:relative;
+      z-index:2000;
+      }
+
+   .popupTop{
+      position:fixed;
+      float:top;
+      z-index:2000;
+
+      background-color:#8191A8;
+
+      border-right:2px solid grey;
+      border-left:2px solid grey;
+      border-top:2px solid grey;
+
+      height:24px;
+      
+      left:10%;
+      width:80%;
+      top:15%;
+      
+      margin-top:-24px;
+      }
+
+   .popupTekst{
+      position:fixed;
+      float:top;  
+
+      background-color:#e4e6f4;
+
+      border-right:2px solid grey;
+      border-left:2px solid grey;
+      border-bottom:2px solid grey;
+
+      padding-top:24px;
+      
+      left:10%;
+      width:80%;
+      top:15%;
+      height:70%;
+      
+      overflow:auto;
+      
+      padding-top:2px;
+      }
+      
+  .popupButton{
+      display:normal;
+      background:url(afdrukken.gif) 1px 2px no-repeat;
+      padding-left:2px;
+      padding-right:12px;
+      padding-bottom:0px;
+      font-size:14px;
+	   width:14 px;
+	   height:14 px;
+	  
+      border-radius:2px;
+      -webkit-border-radius:2px;
+      -moz-border-radius:2px;
+      }
+
+   .popupTekst .popupButton{
+      display:none;
+      }
+      
+   .printButton{
+      position:relative;
+      background:url(afdrukken.gif) 1px 2px no-repeat;
+      float:left;
+      cursor:pointer;
+      margin:3px;
+      padding:3px 3px 5px 3px;
+      height:10px;
+      width:85px;
+      text-align:center;
+      font-weight:bold;
+      font-size:11px;
+      color:black;
+      z-index:200;
+
+      border-radius:2px;
+      -webkit-border-radius:2px;
+      -moz-border-radius:2px;
+      }
+       
+   .cancelButton{
+      position:relative;
+      float:right;
+      cursor:pointer;
+      margin:3px;
+      padding:3px 3px 5px 3px;
+      width:14px;
+      height:10px;
+      text-align:center;
+      font-weight:bold;
+      font-size:11px;
+      color:black;
+      z-index:200;
+
+      border-radius:2px;
+      -webkit-border-radius:2px;
+      -moz-border-radius:2px;
+      }
+
+   .cancelButton:hover{
+      background:#FF8A00;
+      text-decoration:none;
+      }
+
+   .printButton:hover{
+      background:url(afdrukken.gif) 1px 2px no-repeat;
+      background-color:#FF8A00;
+      text-decoration:none;
+      }
+      
+   /****************************************************************/
+   /* Weergave standaard HTML elementen */
+      
+   h1 {
+      padding-top:6px;
+      margin-bottom:-10px;
+      padding-bottom:6px;
+      color:black;
+      font-size:1.25em;
+      
+      border-top-style:solid;
+      border-top-width:2px;
+      border-top-color:#e4e6f4;
+   }
+
+   h2, h3, h4, h5, h6, h7, h8, h9 {
+      padding-top:6px;
+      margin-bottom:-8px;
+      color:black;
+      font-size:1.1em;
+   }
+
+   h5, h6, h7, h8, h9 { font-size:90%; }
+
+   a:link {text-decoration:none;}
+   a:visited {text-decoration:none;}
+   a:hover {text-decoration:underline;}
+   a:active {text-decoration:underline;}
+
+   a:link {color:black;}
+   a:visited {color:#707070;}
+
+   a.externeVerwijzing {
+	  text-decoration:none;
+	  color:#0000FF;
+      }
+
+   a.externeVerwijzing:hover {
+	  text-decoration:underline;
+	  color:#0000FF;
+      }
+
+   a.externeVerwijzing:visited{
+	  text-decoration:underline;
+	  color:#551A8B;
+      }
+
+   a.interneVerwijzing {
+	  text-decoration:none;
+	  color:#0000FF;
+      }
+
+   a.interneVerwijzing:hover {
+	  text-decoration:underline;
+	  color:#0000FF;
+      }
+
+   a.interneVerwijzing:visited{
+	  text-decoration:underline;
+	  color:#551A8B;
+      }
+	  
+   
+   del  {text-decoration:line-through;}
+   ins {background-color:yellow;text-decoration:none;}
+
+   /* IE */
+   ol.upper-roman { list-style-type:upper-roman;}
+   ol.lower-roman { list-style-type:lower-roman;}
+   ol.upper-alpha { list-style-type:upper-alpha;}
+   ol.lower-alpha { list-style-type:lower-alpha;}
+   ol.upper-greek { list-style-type:upper-greek;}
+   ol.lower-greek { list-style-type:lower-greek;}
+   ol.decimal { list-style-type:decimal;}
+
+   ul.disc { list-style-type:disc;}
+   ul.square { list-style-type:square;}
+   ul.circle { list-style-type:circle;}
+
+   ins{
+      background:yellow;   
+      text-decoration:none;
+      cursor:default;	
+   }
+
+   del{
+      text-decoration:line-through;
+      cursor:default;	
+   }
+
+   .inhoud table{
+      margin-top:20px;
+      margin-bottom:20px;
+      
+      cellspacing:0; 
+      cellpadding:0;
+      width:100%; 
+      border-collapse:collapse;
+
+      background-color:#f8f8f8;
+   }
+
+   .inhoud td{
+      border-style:solid;
+      border-width:1px;
+      border-color:#000000;
+      
+   }
+
+   .inhoud tr{
+   }
+
+   hr
+            {
+      display:none;
+      }
+   }
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) 
+   {
+   }

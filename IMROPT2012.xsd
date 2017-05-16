@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =================================================================== -->
+<!--   									 lokale versie   						-->
+<!--								 IMROPT2012 versie 1.0.2.         -->
+<!--                        onderdeel van RO Standaarden 2012 v1.1.0                                                 -->
+<!-- =================================================================== -->
+<!-- Remote versie op:																									 -->
+<!-- http://schemas.geonovum.nl/imro/pt/2012/1.0/IMROPT2012.xsd                                            -->
+<!-- =================================================================== -->
+<!-- Geonovum, Beheerorganisatie RO-Standaarden. http://ro-standaarden.geonovum.nl -->
+<!-- =================================================================== -->
+<!-- 2017-05-15 Versie 1.0.2 gepubliceerd -->
+<!-- 2016-08-24 Versie 1.0.2RC aangepast op fout, nog niet gepubliceerd -->
+<!-- binnen een element 'toegevoegd' kon geen 'interneVerwijzing', 'externeVerwijzing', 'voetnoot' worden opgenomen. -->
+<!-- Volgens IMROPT moet dit wel kunnen. -->
+<!-- Deze elementen zijn nu toegevoegd -->
+<!-- 2012-10-30 Versie 1.0.1 gepubliceerd -->
+<!-- Geen aanpassingen -->
+<!-- 2012-09-27 Versie 1.0.1.1RC voor test door RO-Online -->
+<!-- IMROPT2012-xhtml-module.xsd is nu in dit XSD geintegreerd -->
+<!-- 2012-07-10 Versie 1.0.0.1 gepubliceerd -->
+<!-- Geldig vanaf 2012-07-22 -->
+<!-- 2012-07-04 Versie 1.0.0.1 nog niet gepubliceerd -->
+<!-- xlink reparatie -->
+<!-- 2012-03-01 Versie 1.0.0 gepubliceerd -->
+<!-- 2012-02-22 Versie 1.0.0RC -->
+<!-- Versie 0.0.9 gepubliceerd, beta versie -->
+<!-- er is o.a. nog een issue met de tags verwijderd en toegevoegd -->
+<!-- tekstopmaak is daarbij nog niet meegenomen -->
+<!-- Versie 0.0.4 koppeling met xhtml toegevoegd -->
+<!-- identificatie is van type ID gemaakt -->
+<!-- referentie zijn allemaal by reference (xlink) en niet inline -->
+<!-- Versie 0.0.3 -->
+<!-- Inhoud in overeenstemming met versie 0.9 concept -->
+<!-- toegevoegd: definitieve bestemming bij voorlopige bestemming -->
+<!-- attribuut titel -> titelInfo -->
+<!-- namespace imropt aangepast -->
+<!-- Twee ennumeratiewaarden , spatie verwijderd -->
+<!-- Versie 0.0.2: in ontwikkeling. Bij doc 0.9 -->
+<!-- Drie aparte objecttype lijsten. -->
+<!-- imro voorvoegsels bij objecttypen verwijderd -->
+<!-- rootelement FeatureCollectionIMROPT gecreeerd -->
+<!-- attribuut typeTekst toegevoegd -->
+<!-- attributen van TitelInfo allemaal optioneel -->
+<!-- referenties naar objecten onderaan de lijst met attributen gezet -->
+<!-- Versie 0.0.1: Hoort bij PRPT2012 versie 0.6 concept (6 december 2011)                      -->
+<!-- Opmerking: Dit is de eerste versie. Het betreft alleen het schema met betrekking tot het model -->
+<!-- Import van xhtml e.d. is hierin nog niet gerealiseerd.						-->
+<!-- =================================================================== -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:imropt="http://www.geonovum.nl/imro/pt/2012/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://www.geonovum.nl/imro/pt/2012/1.0" elementFormDefault="qualified" version="1.0.2">
+	<import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/1999/xlink.xsd"/>
+	<import namespace="http://www.w3.org/1999/xhtml" schemaLocation="IMROPT2012-xhtml.xsd"/>
+	<!-- ================================================================= -->
+	<element name="FeatureCollectionIMROPT" type="imropt:FeatureCollectionIMROPTType"/>
+	<complexType name="FeatureCollectionIMROPTType">
+		<sequence>
+			<element ref="imropt:TekstMetadata"/>
+			<element ref="imropt:TekstObject" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<!-- =============================================================== -->
+	<element name="TekstMetadata" type="imropt:TekstMetadataType"/>
+	<complexType name="TekstMetadataType">
+		<sequence>
+			<element name="verwijzingNaarPlangebied" type="string"/>
+			<element name="typePlan" type="string" minOccurs="0"/>
+			<element name="naam" type="string" minOccurs="0"/>
+			<element name="beleidsmatigVerantwoordelijkeOverheid" type="string" minOccurs="0"/>
+			<element name="naamOverheid" type="string" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="overheidsCode" type="string" minOccurs="0"/>
+			<element name="creatiedatum" type="string" minOccurs="0"/>
+			<element name="naamPraktijkrichtlijn" type="string"/>
+		</sequence>
+		<attribute name="identificatie" type="ID" use="required"/>
+	</complexType>
+	<complexType name="TekstMetadataPropertyType">
+		<attributeGroup ref="xlink:simpleAttrs"/>
+	</complexType>
+	<element name="TekstObject" type="imropt:TekstObjectType"/>
+	<complexType name="TekstObjectType">
+		<sequence>
+			<element name="verwijzingNaarPlangebied" type="string"/>
+			<element name="volgnummer" type="integer"/>
+			<element name="niveau" type="integer"/>
+			<element name="type" type="imropt:ObjecttypePropertyType"/>
+			<element name="typeTekst" type="imropt:TeksttypeType" minOccurs="0"/>
+			<element name="titelInfo" type="imropt:TitelInfoPropertyType"/>
+			<element name="externeVerwijzing" type="anyURI" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="tekstMetadata" type="imropt:TekstMetadataPropertyType" minOccurs="0"/>
+			<element name="ouderID" type="imropt:TekstObjectPropertyType"/>
+			<element name="interneVerwijzing" type="imropt:TekstObjectPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="xhtml:tekst" minOccurs="0"/>
+		</sequence>
+		<attribute name="identificatie" type="ID" use="required"/>
+	</complexType>
+	<complexType name="TekstObjectPropertyType">
+		<attributeGroup ref="xlink:simpleAttrs"/>
+	</complexType>
+	<element name="TitelInfo" type="imropt:TitelInfoType"/>
+	<complexType name="TitelInfoType">
+		<sequence>
+			<element name="label" type="string" minOccurs="0"/>
+			<element name="nummer" type="string" minOccurs="0"/>
+			<element name="naam" type="string" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="TitelInfoPropertyType">
+		<sequence>
+			<element ref="imropt:TitelInfo"/>
+		</sequence>
+	</complexType>
+	<simpleType name="ObjecttypePlanType">
+		<restriction base="string">
+			<enumeration value="afwijken van de bouwregels"/>
+			<enumeration value="afwijken van de gebruiksregels"/>
+			<enumeration value="algemene aanduidingsregels"/>
+			<enumeration value="algemene afwijkingsregels"/>
+			<enumeration value="algemene bouwregels"/>
+			<enumeration value="algemene gebruiksregels"/>
+			<enumeration value="algemene procedureregels"/>
+			<enumeration value="algemene regels"/>
+			<enumeration value="algemene wijzigingsregels"/>
+			<enumeration value="anti-dubbeltelregel"/>
+			<enumeration value="begrippen"/>
+			<enumeration value="bestemming"/>
+			<enumeration value="bestemmingsomschrijving"/>
+			<enumeration value="bestemmingsregels"/>
+			<enumeration value="bijlage bij regels"/>
+			<enumeration value="bijlage bij toelichting"/>
+			<enumeration value="bijlagen bij regels"/>
+			<enumeration value="bijlagen bij toelichting"/>
+			<enumeration value="bouwregels"/>
+			<enumeration value="deel"/>
+			<enumeration value="definitieve bestemming bij voorlopige bestemming"/>
+			<enumeration value="document"/>
+			<enumeration value="dubbelbestemming"/>
+			<enumeration value="geldigheidstermijn van de voorlopige bestemming"/>
+			<enumeration value="hoofdstuk"/>
+			<enumeration value="inleidende regels"/>
+			<enumeration value="lid"/>
+			<enumeration value="nadere eisen"/>
+			<enumeration value="omgevingsvergunning voor het slopen van een bouwwerk"/>
+			<enumeration value="omgevingsvergunning voor het uitvoeren van werken, geen bouwwerk zijnde, of van werkzaamheden"/>
+			<enumeration value="overgangs- en slotregels"/>
+			<enumeration value="overgangsrecht"/>
+			<enumeration value="overig"/>
+			<enumeration value="overige regels"/>
+			<enumeration value="paragraaf"/>
+			<enumeration value="regels"/>
+			<enumeration value="slotregel"/>
+			<enumeration value="specifieke gebruiksregels"/>
+			<enumeration value="sublid"/>
+			<enumeration value="subparagraaf"/>
+			<enumeration value="subsublid"/>
+			<enumeration value="subsubparagraaf"/>
+			<enumeration value="subsubsublid"/>
+			<enumeration value="subsubsubparagraaf"/>
+			<enumeration value="toelichting"/>
+			<enumeration value="uit te werken bestemming"/>
+			<enumeration value="uitwerkingsregels"/>
+			<enumeration value="verwezenlijking in de naaste toekomst"/>
+			<enumeration value="voorlopige bestemming"/>
+			<enumeration value="wijze van meten"/>
+			<enumeration value="wijzigingsbevoegdheid"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ObjecttypeVisieType">
+		<restriction base="string">
+			<enumeration value="band"/>
+			<enumeration value="beleidstekst"/>
+			<enumeration value="bijlage"/>
+			<enumeration value="bijlagen"/>
+			<enumeration value="deel"/>
+			<enumeration value="document"/>
+			<enumeration value="hoofdstuk"/>
+			<enumeration value="overig"/>
+			<enumeration value="paragraaf"/>
+			<enumeration value="subparagraaf"/>
+			<enumeration value="subsubparagraaf"/>
+			<enumeration value="subsubsubparagraaf"/>
+			<enumeration value="toelichting"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ObjecttypeBesluitType">
+		<restriction base="string">
+			<enumeration value="afdeling"/>
+			<enumeration value="artikel"/>
+			<enumeration value="besluitdocument"/>
+			<enumeration value="besluittekst"/>
+			<enumeration value="bijlage"/>
+			<enumeration value="bijlage bij regels"/>
+			<enumeration value="bijlage bij toelichting"/>
+			<enumeration value="bijlagen"/>
+			<enumeration value="bijlagen bij regels"/>
+			<enumeration value="bijlagen bij toelichting"/>
+			<enumeration value="deel"/>
+			<enumeration value="hoofdstuk"/>
+			<enumeration value="lid"/>
+			<enumeration value="onderdeel"/>
+			<enumeration value="overig"/>
+			<enumeration value="paragraaf"/>
+			<enumeration value="regels"/>
+			<enumeration value="sublid"/>
+			<enumeration value="subonderdeel"/>
+			<enumeration value="subparagraaf"/>
+			<enumeration value="subsublid"/>
+			<enumeration value="subsubparagraaf"/>
+			<enumeration value="subsubsublid"/>
+			<enumeration value="subsubsubparagraaf"/>
+			<enumeration value="titel"/>
+			<enumeration value="toelichting"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TeksttypeType">
+		<restriction base="string">
+			<enumeration value="beleid"/>
+			<enumeration value="beleid gemandateerd aan GS"/>
+			<enumeration value="besluitdocument"/>
+			<enumeration value="besluittekst"/>
+			<enumeration value="bijlage"/>
+			<enumeration value="bijlage bij besluitdocument"/>
+			<enumeration value="bijlage bij besluittekst"/>
+			<enumeration value="bijlage bij regel met voorbereidingsbescherming"/>
+			<enumeration value="bijlage bij regel zonder voorbereidingsbescherming"/>
+			<enumeration value="bijlage bij regels"/>
+			<enumeration value="bijlage bij toelichting"/>
+			<enumeration value="bijlage bij voorschriften/regels"/>
+			<enumeration value="document"/>
+			<enumeration value="regel met voorbereidingsbescherming"/>
+			<enumeration value="regel zonder voorbereidingsbescherming"/>
+			<enumeration value="regels"/>
+			<enumeration value="toelichting"/>
+			<enumeration value="voorschriften/regels"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ObjecttypePropertyType">
+		<union memberTypes="imropt:ObjecttypePlanType imropt:ObjecttypeVisieType imropt:ObjecttypeBesluitType"/>
+	</simpleType>
+	<group name="rotext.content">
+		<choice>
+			<group ref="xhtml:xhtml.List.class"/>
+			<group ref="xhtml:xhtml.Block.class"/>
+			<element ref="imropt:verwijderd"/>
+			<element ref="imropt:toegevoegd"/>
+		</choice>
+	</group>
+	<group name="rolink.content">
+		<choice>
+			<group ref="xhtml:xhtml.InlNoAnchor.mix"/>
+		</choice>
+	</group>
+	<attributeGroup name="listextra.attlist">
+		<attribute name="type" type="string"/>
+	</attributeGroup>
+	<attributeGroup name="rolinkExtern.attlist">
+		<attribute name="link" type="string"/>
+		<attributeGroup ref="xlink:simpleAttrs"/>
+		<attributeGroup ref="xhtml:xhtml.Common.attrib"/>
+	</attributeGroup>
+	<attributeGroup name="rolinkIntern.attlist">
+		<attribute name="autoUpdate" type="boolean"/>
+		<attributeGroup ref="imropt:rolinkExtern.attlist"/>
+	</attributeGroup>
+	<complexType name="rolinkExtern.type" mixed="true">
+		<group ref="imropt:rolink.content"/>
+		<attributeGroup ref="imropt:rolinkExtern.attlist"/>
+	</complexType>
+	<complexType name="rolinkIntern.type" mixed="true">
+		<group ref="imropt:rolink.content"/>
+		<attributeGroup ref="imropt:rolinkIntern.attlist"/>
+	</complexType>
+	<complexType name="romixed.type" mixed="true">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<group ref="imropt:rotext.content"/>
+			<group ref="imropt:rolink.content"/>
+			<!-- aanpassing 20160824 -->
+			<element ref="imropt:interneVerwijzing"/>
+			<element ref="imropt:externeVerwijzing"/>
+			<element ref="imropt:voetnoot"/>
+		</choice>
+	</complexType>
+	<element name="interneVerwijzing" type="imropt:rolinkIntern.type"/>
+	<element name="externeVerwijzing" type="imropt:rolinkExtern.type"/>
+	<element name="verwijderd" type="imropt:romixed.type"/>
+	<element name="toegevoegd" type="imropt:romixed.type"/>
+	<element name="voetnoot" type="string"/>
+	<complexType name="rotext.type" mixed="true">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<group ref="imropt:rotext.content"/>
+		</choice>
+	</complexType>
+</schema>

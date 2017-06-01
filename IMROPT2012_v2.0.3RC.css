@@ -4,7 +4,7 @@ Cascading StyleSheet versie 2.0.3 RC
 lokale versie
 behorende bij IMROPT2012 versie 1.1. met XSLT versie 2.0
 onderdeel van RO Standaarden 2012
-geïmplementeerd in Ruimtelijkeplannen.nl vanaf de release van ...
+geÃ¯mplementeerd in Ruimtelijkeplannen.nl vanaf de release van ...
 =================================================================================
 Geonovum, Beheerorganisatie RO Standaarden. http://ro-standaarden.geonovum.nl 	
 =================================================================================
@@ -23,7 +23,7 @@ ondersteund, kan vanaf deze versie het logo van de bronhouder boven de plantekst
 worden getoond. Hievoor moet de bronhouder eenmalig een logo uploaden via de
 index van Ruimtelijkeplannen.nl
 =================================================================================
- * Aanpassing december 2015 door Rieuwert Witte en Geodan
+Aanpassing december 2015 door Rieuwert Witte en Geodan
 
  * Opbouw van de HTML:de pagina is horizontaal gesplitst:boven een kop (class "kop")
    van 80px met daaronder de tekst (class "tekst"). 
@@ -111,7 +111,7 @@ Aanpassing juni 2017 door Gijs Koedam
       font-size:1.4em;
        
       border-bottom-style:solid;
-      border-bottom-width:3;
+      border-bottom-width:3px;
       border-bottom-color:#FF8A00;     
     }
 
@@ -510,8 +510,8 @@ Aanpassing juni 2017 door Gijs Koedam
       padding-right:12px;
       padding-bottom:0px;
       font-size:14px;
-	   width:14 px;
-	   height:14 px;
+	   width:14px;
+	   height:14px;
 	  
       border-radius:2px;
       -webkit-border-radius:2px;
@@ -684,10 +684,11 @@ Aanpassing juni 2017 door Gijs Koedam
    .inhoud tr{
    }
 
-   hr
-            {
+   hr {
       display:none;
-      }
+   }
+   img {
+   	max-width: 95%;
    }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) 
